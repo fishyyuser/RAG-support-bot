@@ -40,7 +40,8 @@ class RAGPipeline:
             logger.info(f"Received query: {question}")
 
             # Step 1: Retrieve relevant docs
-            docs = self.db.similarity_search(question, k=k)
+            refined_query = f"FastAPI tutorial: {question}"
+            docs = self.db.similarity_search(refined_query, k=5)
 
             if not docs:
                 logger.warning("No relevant documents found.")
